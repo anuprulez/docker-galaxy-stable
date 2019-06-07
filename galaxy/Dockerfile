@@ -9,8 +9,8 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 ARG GALAXY_RELEASE
 ARG GALAXY_REPO
 
-ENV GALAXY_RELEASE=${GALAXY_RELEASE:-release_19.01} \
-GALAXY_REPO=${GALAXY_REPO:-https://github.com/galaxyproject/galaxy} \
+ENV GALAXY_RELEASE=${GALAXY_RELEASE:-tool_recommendation} \
+GALAXY_REPO=${GALAXY_REPO:-https://github.com/usegalaxy-eu/galaxy} \
 GALAXY_ROOT=/galaxy-central \
 GALAXY_CONFIG_DIR=/etc/galaxy \
 EXPORT_DIR=/export \
@@ -247,6 +247,12 @@ RUN echo "DISCARD_SESSION_KEYRING_ON_STARTUP=False" > /etc/condor/condor_config.
 # This needs to happen here and not above, otherwise the Galaxy start
 # (without running the startup.sh script) will crash because integrated_tool_panel.xml could not be found.
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG $EXPORT_DIR/galaxy-central/integrated_tool_panel.xml
+
+# Adding the tool definitions to the container
+ADD mapper_tools.yml $GALAXY_ROOT/mapper_tools.yml
+
+# Install mappers
+RUN install-tools $GALAXY_ROOT/mapper_tools.yml
 
 # Expose port 80, 443 (webserver), 21 (FTP server), 8800 (Proxy), 9002 (supvisord web app)
 EXPOSE :21
