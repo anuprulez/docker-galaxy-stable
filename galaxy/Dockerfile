@@ -9,7 +9,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 ARG GALAXY_RELEASE
 ARG GALAXY_REPO
 
-ENV GALAXY_RELEASE=${GALAXY_RELEASE:-tool_recommendation} \
+ENV GALAXY_RELEASE=${GALAXY_RELEASE:-tool_recommendation_19.05} \
 GALAXY_REPO=${GALAXY_REPO:-https://github.com/usegalaxy-eu/galaxy} \
 GALAXY_ROOT=/galaxy-central \
 GALAXY_CONFIG_DIR=/etc/galaxy \
@@ -151,7 +151,7 @@ RUN ansible-playbook /ansible/postgresql_provision.yml && \
     --extra-vars nginx_use_remote_header=True \
     --tags=galaxyextras,cvmfs -c local && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm -rf ~/.cache/ /galaxy-central/client/node_modules/
+    rm -rf ~/.cache/ /galaxy-central/client/node_modules/	
 
 RUN mkdir /shed_tools && chown $GALAXY_USER:$GALAXY_USER /shed_tools && \
     mkdir $EXPORT_DIR/ftp/ && chown $GALAXY_USER:$GALAXY_USER $EXPORT_DIR/ftp && \
@@ -248,12 +248,6 @@ RUN echo "DISCARD_SESSION_KEYRING_ON_STARTUP=False" > /etc/condor/condor_config.
 # (without running the startup.sh script) will crash because integrated_tool_panel.xml could not be found.
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG $EXPORT_DIR/galaxy-central/integrated_tool_panel.xml
 
-# Adding the tool definitions to the container
-ADD mapper_tools.yml $GALAXY_ROOT/mapper_tools.yml
-
-# Install mappers
-RUN install-tools $GALAXY_ROOT/mapper_tools.yml
-
 # Expose port 80, 443 (webserver), 21 (FTP server), 8800 (Proxy), 9002 (supvisord web app)
 EXPOSE :21
 EXPOSE :80
@@ -266,6 +260,12 @@ VOLUME ["/export/", "/data/", "/var/lib/docker"]
 
 ADD install_db.sh /usr/bin/install_db.sh
 RUN chmod +x /usr/bin/install_db.sh
+
+# Adding the tool definitions to the container
+ADD mapper_tools.yml $GALAXY_ROOT/mapper_tools.yml
+
+# Install mappers
+RUN install-tools $GALAXY_ROOT/mapper_tools.yml
 
 # Autostart script that is invoked during container start
 CMD ["/usr/bin/startup"]

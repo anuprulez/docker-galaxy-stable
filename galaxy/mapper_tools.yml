@@ -1,0 +1,94 @@
+---
+install_repository_dependencies: true
+install_resolver_dependencies: true
+install_tool_dependencies: false
+
+tools:
+
+  - name: cuffmerge
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cuffquant
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cuffnorm
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cuffcompare
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cufflinks
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cufflinks
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+
+  - name: cuffcompare
+    owner: devteam
+    tool_panel_section_label: RNA Analysis
+    
+  - name: bwameth
+    owner: iuc
+    tool_panel_section_label: Epigenetics    
+    
+  - name: hicexplorer_hiccorrectmatrix
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicpca
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicsummatrices
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicaggregatecontacts
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hiccomparematrices
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hiccorrelate
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+
+  - name: hicexplorer_hictransform
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicplotviewpoint  
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicbuildmatrix
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicplotmatrix
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicmergematrixbins
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicplottads
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+    
+  - name: hicexplorer_hicfindtads
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
+
+  - name: suite_hicexplorer
+    owner: bgruening
+    tool_panel_section_label: HiCExplorer
