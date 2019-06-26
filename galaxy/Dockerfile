@@ -151,7 +151,7 @@ RUN ansible-playbook /ansible/postgresql_provision.yml && \
     --extra-vars nginx_use_remote_header=True \
     --tags=galaxyextras,cvmfs -c local && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm -rf ~/.cache/ /galaxy-central/client/node_modules/	
+    rm -rf ~/.cache/ /galaxy-central/client/node_modules/
 
 RUN mkdir /shed_tools && chown $GALAXY_USER:$GALAXY_USER /shed_tools && \
     mkdir $EXPORT_DIR/ftp/ && chown $GALAXY_USER:$GALAXY_USER $EXPORT_DIR/ftp && \
